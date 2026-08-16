@@ -122,6 +122,9 @@ impl<Context> Decode<Context> for ErrorKind {
     }
 }
 
+impl_borrow_decode!(io::Error);
+impl_borrow_decode!(io::ErrorKind);
+
 #[cfg(test)]
 mod tests {
     use std::format;
@@ -219,5 +222,24 @@ mod tests {
         let kind = ErrorKind::TimedOut;
         let restored: ErrorKind = roundtrip(&kind);
         assert_eq!(restored, kind);
+    }
+
+    #[test]
+    fn test_error_borrow_decode() {
+        let original = io::Error::new(ErrorKind::TimedOut, "deadline exceeded");
+        let encoded = crate::encode_to_vec(&original, config::standard()).unwrap();
+        let (restored, _): (io::Error, usize) =
+            crate::borrow_decode_from_slice(&encoded, config::standard()).unwrap();
+        assert_eq!(restored.kind(), ErrorKind::TimedOut);
+        assert_eq!(restored.to_string(), "deadline exceeded");
+    }
+
+    #[test]
+    fn test_error_kind_borrow_decode() {
+        let original = ErrorKind::ConnectionReset;
+        let encoded = crate::encode_to_vec(&original, config::standard()).unwrap();
+        let (restored, _): (ErrorKind, usize) =
+            crate::borrow_decode_from_slice(&encoded, config::standard()).unwrap();
+        assert_eq!(restored, original);
     }
 }
