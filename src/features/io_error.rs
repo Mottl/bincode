@@ -4,7 +4,7 @@ use crate::{
     de::Decoder,
     enc::Encoder,
     error::{DecodeError, EncodeError},
-    Decode, Encode,
+    impl_borrow_decode, Decode, Encode,
 };
 use std::{
     io::{self, ErrorKind},
@@ -237,7 +237,7 @@ mod tests {
     #[test]
     fn test_error_kind_borrow_decode() {
         let original = ErrorKind::ConnectionReset;
-        let encoded = crate::encode_to_vec(&original, config::standard()).unwrap();
+        let encoded = crate::encode_to_vec(original, config::standard()).unwrap();
         let (restored, _): (ErrorKind, usize) =
             crate::borrow_decode_from_slice(&encoded, config::standard()).unwrap();
         assert_eq!(restored, original);

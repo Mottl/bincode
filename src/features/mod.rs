@@ -16,3 +16,9 @@ pub use self::derive::*;
 #[cfg(feature = "serde")]
 #[cfg_attr(docsrs, doc(cfg(feature = "serde")))]
 pub mod serde;
+
+#[cfg(feature = "io_error")]
+pub mod io_error;
+
+#[cfg(feature = "arrayvec")]
+pub mod arrayvec;

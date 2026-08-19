@@ -102,9 +102,6 @@ pub mod de;
 pub mod enc;
 pub mod error;
 
-#[cfg(feature = "io_error")]
-pub mod io_error;
-
 pub use de::{BorrowDecode, Decode};
 pub use enc::Encode;
 
