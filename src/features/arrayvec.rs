@@ -1,4 +1,4 @@
-//! arrayvec::{ArrayVec, ArrayString} Encode/Decode implementation
+//! Support for arrayvec::{ArrayVec, ArrayString} integration. Enable this with the `arrayvec` feature.
 
 use arrayvec::{ArrayString, ArrayVec};
 

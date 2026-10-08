@@ -26,18 +26,22 @@ description = "A binary serialization / deserialization strategy for transformin
 edition = "2021"
 
 [features]
-default = ["std", "derive"]
+default = ["std", "derive", "arrayvec", "compact_str"]
 std = ["alloc", "serde?/std"]
 alloc = ["serde?/alloc"]
+arrayvec = ["dep:arrayvec"]
+compact_str = ["dep:compact_str"]
 derive = ["bincode_derive"]
 io_error = ["std"]
-arrayvec = ["dep:arrayvec"]
+smartstring = ["dep:smartstring"]
 
 [dependencies]
 bincode_derive = { path = "derive", version = "2.0.1", optional = true }
 serde = { version = "1.0", default-features = false, optional = true }
 unty = "0.0.5"
 arrayvec = { version = "0.7", optional = true }
+compact_str = { version = "0.10", optional = true }
+smartstring = { version = "1.0.1", optional = true }
 
 # Used for tests
 [dev-dependencies]

@@ -22,3 +22,9 @@ pub mod io_error;
 
 #[cfg(feature = "arrayvec")]
 pub mod arrayvec;
+
+#[cfg(feature = "compact_str")]
+pub mod compact_str;
+
+#[cfg(feature = "smartstring")]
+pub mod smartstring;

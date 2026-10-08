@@ -92,7 +92,10 @@ use enc::write::Writer;
     feature = "alloc",
     feature = "std",
     feature = "derive",
-    feature = "serde"
+    feature = "serde",
+    feature = "arrayvec",
+    feature = "compact_str",
+    feature = "smartstring",
 ))]
 pub use features::*;
 
